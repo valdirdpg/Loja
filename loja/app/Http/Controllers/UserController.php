@@ -95,6 +95,7 @@ class UserController extends Controller
             $uploads = $imagem->storeAs('users', $nameImage);
             if (!$uploads)
                 return redirect()->back()->with(['errors' => 'Erro ao carregar imagem!']);
+
         }
 
         if ($dataForm['password'] != '')
@@ -105,7 +106,7 @@ class UserController extends Controller
         //altera o perfil
         $update = $usuario->update($dataForm);
         if ($update):
-            return redirect()->route('home');
+            return redirect()->back()->with(['success' => 'Perfil editado com sucesso']);
         else:
             return redirect()->back()->with(['errors' => 'Erro na tentaiva de alterar perfil']);
         endif;

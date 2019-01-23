@@ -1,6 +1,22 @@
 <div class="form-group row">
     <div class="col-md-12">
 
+        @if(isset($errors) && count($errors)>0)
+            <div class="alert alert-danger">
+                @foreach($errors->all() as $error )
+                    <p>{{$error}}</p>
+                @endforeach
+            </div>
+        @endif
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{session('success')    }}
+            </div>
+
+        @endif
+
+
         {{Form::text('name',null,['class'=>"form-control", 'placeholder'=>'Nome', 'required'])}}
         @if ($errors->has('name'))
             <span class="invalid-feedback" role="alert">
@@ -14,7 +30,7 @@
 
     <div class="col-md-12">
 
-{{Form::email('email', null,['class' =>'form-control', 'placeholder' =>'E-mail', 'required'])}}
+        {{Form::email('email', null,['class' =>'form-control', 'placeholder' =>'E-mail', 'required'])}}
         @if ($errors->has('email'))
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -26,7 +42,7 @@
 <div class="form-group row">
     <div class="col-md-12">
 
-{{Form::password('password',['class' => 'form-control', 'placeholder' => 'Senha'])}}
+        {{Form::password('password',['class' => 'form-control', 'placeholder' => 'Senha'])}}
         @if ($errors->has('password'))
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -44,7 +60,7 @@
 <div class="form-group row">
     <div class="col-md-12">
 
-{{Form::file('image',['class' => 'form-control', 'placeholder' => 'Nenhum arquvo selecionado'])}}
+        {{Form::file('image',['class' => 'form-control', 'placeholder' => 'Nenhum arquvo selecionado'])}}
         @if ($errors->has('image'))
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('image') }}</strong>
